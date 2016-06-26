@@ -1,3 +1,14 @@
+def array_taker(thing1, thing2, thing3)
+	[thing1, thing2, thing3]
+end
+
+
+def array_and_thing(array, thing)
+	array << thing
+end
+
+
+
 #initialize empty array
 tv_shows = []
 
@@ -52,4 +63,8 @@ things_i_like = tv_shows
 
 #print
 p things_i_like
+
+p array_taker("dogs","horse", "cat")
+p array_and_thing([], "bed")
+p array_and_thing([], ["banana", "strawberry", "pineapple"])
  
