@@ -66,7 +66,13 @@ pound = []
  pound.each_with_index do |cat, index|
    pound.scratch
    pound.scratch
+<<<<<<< HEAD
    pound.meow(5)
    pound.meow(1)
  end
  
+=======
+   pound.meow(6)
+   pound.meow(1)
+ end
+>>>>>>> ab240967c41beb41cf5480328f4f7e89a50f9858

@@ -1,0 +1,100 @@
+
+# Virus Predictor
+
+# I worked on this challenge [by myself, with: ].
+# We spent [#] hours on this challenge.
+
+# EXPLANATION OF require_relative
+#
+#
+require_relative 'state_data'
+
+class VirusPredictor
+  attr_reader :state, :population, :population_density
+
+  def initialize(state_of_origin, population_density, population)
+    @state = state_of_origin
+    @population = population
+    @population_density = population_density
+  end
+
+  def virus_effects
+    predicted_deaths
+    speed_of_spread
+  end
+
+  private
+
+  def predicted_deaths
+    # predicted deaths is solely based on population density
+    if population_density >= 200
+     death_multiplier = 0.4
+    elsif population_density >= 150
+      death_multiplier = 0.3
+    elsif population_density >= 100
+      death_multiplier = 0.2
+    elsif population_density >= 50
+      death_multiplier = 0.1
+    else
+      death_multiplier = 0.05
+    end
+number_of_deaths = (population * death_multiplier).floor
+    print "#{state} will lose #{number_of_deaths} people in this outbreak"
+
+  end
+
+  def speed_of_spread #in months
+    # We are still perfecting our formula here. The speed is also affected
+    # by additional factors we haven't added into this functionality.
+    speed = 0.0
+
+    if population_density >= 200
+      speed += 0.5
+    elsif population_density >= 150
+      speed += 1
+    elsif population_density >= 100
+      speed += 1.5
+    elsif population_density >= 50
+      speed += 2
+    else
+      speed += 2.5
+    end
+
+    puts " and will spread across the state in #{speed} months.\n\n"
+
+  end
+
+end
+
+#=======================================================================
+
+# DRIVER CODE
+ # initialize VirusPredictor for each state
+
+
+# alabama = VirusPredictor.new("Alabama", STATE_DATA["Alabama"][:population_density], STATE_DATA["Alabama"][:population])
+# alabama.virus_effects
+
+# jersey = VirusPredictor.new("New Jersey", STATE_DATA["New Jersey"][:population_density], STATE_DATA["New Jersey"][:population])
+# jersey.virus_effects
+
+# california = VirusPredictor.new("California", STATE_DATA["California"][:population_density], STATE_DATA["California"][:population])
+# california.virus_effects
+
+# alaska = VirusPredictor.new("Alaska", STATE_DATA["Alaska"][:population_density], STATE_DATA["Alaska"][:population])
+# alaska.virus_effects
+
+# state_of_origin = VirusPredictor.new(state_of_origin, STATE_DATA[state_of_origin][:population_density], STATE_DATA[state_of_origin][:population]) 
+# state_of_origin.virus_effects
+
+STATE_DATA.each do |key, value|
+  VirusPredictor.new(key, value[:population_density], value[:population]).virus_effects
+end 
+
+#=======================================================================
+# Reflection Section
+# 1. The => syntax can take anything as the key, while the key: value syntax makes the key a symbol. This is why you can do "key" = value or :key = value.
+# 2. require_relative imports everything in another file and uses a relative path from the file you're importing it into. require searches your load path for what you're trying to add. It's usually used with gems.
+# 3. One way is to use the .each method, which gives you |key, value|. Another way is to use the .keys method to get an array of all of the keys and then make a loop for the length of that array that access the hash for each key.
+# 4. We were passing instance variables into the private methods, which makes no sense as nobody could call those methods with anything else (they're private) and we already have access to the instance varaibles inside the methods.
+# 5. The concepts I most solidified were what kinds of things you would want to refactor for readability (like using case statements and ranges) and the syntax of case statements : )
