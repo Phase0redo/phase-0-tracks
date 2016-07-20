@@ -1,3 +1,4 @@
+
 # Virus Predictor
 
 # I worked on this challenge [by myself, with: ].
@@ -92,3 +93,8 @@ end
 
 #=======================================================================
 # Reflection Section
+# 1. The => syntax can take anything as the key, while the key: value syntax makes the key a symbol. This is why you can do "key" = value or :key = value.
+# 2. require_relative imports everything in another file and uses a relative path from the file you're importing it into. require searches your load path for what you're trying to add. It's usually used with gems.
+# 3. One way is to use the .each method, which gives you |key, value|. Another way is to use the .keys method to get an array of all of the keys and then make a loop for the length of that array that access the hash for each key.
+# 4. We were passing instance variables into the private methods, which makes no sense as nobody could call those methods with anything else (they're private) and we already have access to the instance varaibles inside the methods.
+# 5. The concepts I most solidified were what kinds of things you would want to refactor for readability (like using case statements and ranges) and the syntax of case statements : )
